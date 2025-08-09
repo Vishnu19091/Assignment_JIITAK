@@ -1,7 +1,6 @@
 import Content from "./components/content";
-import Form from "./components/form";
 
-export default function SetPassword() {
+export default function ResetPassword() {
   return (
     <>
       <Content />

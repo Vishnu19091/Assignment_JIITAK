@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Search } from "@/components/svgs";
 
 interface Prop {
   onSearch: (par: string) => void;
@@ -11,12 +11,7 @@ export function TitleandQueryBox({ onSearch, setCurrentPage }: Prop) {
       <h2 className="text-4xl tablet:text-6xl font-bold">Users</h2>
 
       <div className="relative w-full tablet:w-[24rem]">
-        <img
-          src="./assets/search.svg"
-          height="24"
-          width="24"
-          className="absolute left-3 top-1/2 -translate-y-1/2"
-        />
+        <Search className="h-6 w-6 absolute left-3 top-1/2 -translate-y-1/2" />
         <input
           placeholder="Search Email"
           type="text"

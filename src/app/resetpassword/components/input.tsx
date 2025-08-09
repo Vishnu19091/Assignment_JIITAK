@@ -4,6 +4,11 @@ interface InputProp {
   valid?: boolean;
 }
 
+/**
+ *
+ * @param email
+ * @returns input field for email validation
+ */
 export function Input({ input_value, valid, OnHandleChange }: InputProp) {
   return (
     <input

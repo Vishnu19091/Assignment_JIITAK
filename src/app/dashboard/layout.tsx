@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useState } from "react";
 import { NavBar } from "./components/navbar";
 import { MenuBar } from "./components/menubar";
+import { Menu } from "@/components/svgs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ export default function DashboardLayout({
           {/* Mobile menu button */}
           <div className="tablet:hidden p-4">
             <button onClick={() => setIsNavOpen(true)}>
-              <img src="./assets/menu.svg" alt="Menu" width={24} height={24} />
+              <Menu className="h-6 w-6" />
             </button>
           </div>
 

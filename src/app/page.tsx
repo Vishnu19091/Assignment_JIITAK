@@ -17,7 +17,7 @@ export default function Home() {
             Login
           </Link>
           <Link
-            href={"/setpswd"}
+            href={"/resetpassword"}
             className="hover:underline underline-offset-8"
           >
             Reset Password

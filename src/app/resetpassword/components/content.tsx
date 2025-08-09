@@ -3,9 +3,9 @@ import Form from "./form";
 
 /**
  * Reset Password Content
- * contains title, message, form, reset button
+ * contains title, message, form, redirect to login button
  */
-export default function Content() {
+export default function ResetContent() {
   return (
     <div className="w-[30%] mx-auto my-auto flex flex-col gap-5 items-center">
       <h1 className="font-bold text-xl text-center">

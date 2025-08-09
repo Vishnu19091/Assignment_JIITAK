@@ -1,5 +1,13 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import {
+  Admin,
+  Close,
+  Dashboard,
+  LOGO,
+  Users,
+  Winners,
+} from "@/components/svgs";
 
 interface NavBarProps {
   isOpen: boolean;
@@ -12,14 +20,26 @@ export function NavBar({ isOpen, onClose }: NavBarProps) {
     "bg-orange-100 text-orange-600 border-r-4 border-orange-500 font-bold";
 
   const navLinks = [
-    { href: "/dashboard", label: "Dashboard", icon: "./assets/dashboard.svg" },
+    {
+      href: "/dashboard",
+      label: "Dashboard",
+      icon: <Dashboard className="h-6 w-6" />,
+    },
     {
       href: "/dashboard/users",
       label: "Registered Users",
-      icon: "./assets/users.svg",
+      icon: <Users className="h-6 w-6" />,
     },
-    { href: "/dashboard/winners", label: "Winners", icon: "./assets/gift.svg" },
-    { href: "/dashboard/admin", label: "Admin", icon: "./assets/admin.svg" },
+    {
+      href: "/dashboard/winners",
+      label: "Winners",
+      icon: <Winners className="h-6 w-6" />,
+    },
+    {
+      href: "/dashboard/admin",
+      label: "Admin",
+      icon: <Admin className="h-6 w-6" />,
+    },
   ];
 
   return (
@@ -32,9 +52,9 @@ export function NavBar({ isOpen, onClose }: NavBarProps) {
         } tablet:translate-x-0`}
       >
         <div className="p-6 border-b border-gray-100 flex items-center justify-between">
-          <h1 className="text-xl font-bold text-orange-500">LookMeal</h1>
+          <LOGO className="h-auto w-auto" />
           <button className="tablet:hidden" onClick={onClose}>
-            <img src="./assets/close.svg" alt="Close" width={24} height={24} />
+            <Close className="h-6 w-6" />
           </button>
         </div>
 
@@ -48,9 +68,7 @@ export function NavBar({ isOpen, onClose }: NavBarProps) {
               }`}
               onClick={onClose}
             >
-              <span>
-                <img src={icon} alt={label} height="24" width="24" />
-              </span>
+              <span>{icon}</span>
               <p>{label}</p>
             </Link>
           ))}

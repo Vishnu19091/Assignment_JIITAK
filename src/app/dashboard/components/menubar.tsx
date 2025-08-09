@@ -1,6 +1,6 @@
 export function MenuBar() {
   return (
-    <div className="bg-white w-full h-fit flex justify-end px-3 py-2.5">
+    <div className="bg-white w-auto h-fit flex justify-end px-3 py-2.5">
       <p className="cursor-pointer hover:scale-115 transition-all duration-300 ease-in-out">
         {/* User Icon SVG */}
         <svg
