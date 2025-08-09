@@ -1,11 +1,14 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Card } from "./components/card";
 import GenderAgeChart from "./components/chart";
+import Link from "next/link";
+import { useState } from "react";
 
 const data = [
   {
-    ageGroup: "less than 10",
+    ageGroup: "< 10",
     male: 80,
     female: 100,
     other: 20,
@@ -77,34 +80,146 @@ const data = [
   },
 ];
 
-function NavBar() {
+// empty data
+const data_v1 = [
+  {
+    ageGroup: "< 10",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "10 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "20 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "30 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+
+  {
+    ageGroup: "40 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "50 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "60 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "70 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "80 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+  {
+    ageGroup: "90 >",
+    male: 0,
+    female: 0,
+    other: 0,
+    noAnswer: 0,
+  },
+];
+
+interface NavBarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function NavBar({ isOpen, onClose }: NavBarProps) {
+  const pathname = usePathname();
+  const active = "bg-orange-100 text-orange-600 border-r-4 font-bold";
+
+  const navLinks = [
+    { href: "/dashboard", label: "Dashboard", icon: "./assets/dashboard.svg" },
+    {
+      href: "/dashboard/users",
+      label: "Registered Users",
+      icon: "./assets/users.svg",
+    },
+    { href: "/dashboard/winners", label: "Winners", icon: "./assets/gift.svg" },
+    { href: "/dashboard/admin", label: "Admin", icon: "./assets/admin.svg" },
+  ];
+
   return (
-    <aside className="w-60 bg-white shadow-md min-h-screen">
-      <div className="p-6 border-b border-gray-200">
-        <h1 className="text-xl font-bold text-orange-500">LookMeal</h1>
-      </div>
-      <nav className="mt-6 space-y-2 text-sm">
-        <a
-          href="#"
-          className="block px-6 py-3 bg-orange-100 text-orange-600 font-medium"
-        >
-          Dashboard
-        </a>
-        <a href="#" className="block px-6 py-3 hover:bg-gray-100">
-          Registered Users
-        </a>
-        <a href="#" className="block px-6 py-3 hover:bg-gray-100">
-          Winners
-        </a>
-        <a href="#" className="block px-6 py-3 hover:bg-gray-100">
-          Admin
-        </a>
-      </nav>
-    </aside>
+    <>
+      {/* Sidebar / Drawer */}
+      <aside
+        className={`fixed tablet:static top-0 left-0 min-h-screen w-[18rem] bg-white shadow-md z-50 transform transition-transform duration-300
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} tablet:translate-x-0`}
+      >
+        <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+          <h1 className="text-xl font-bold text-orange-500">LookMeal</h1>
+          <button className="tablet:hidden" onClick={onClose}>
+            <img src="./assets/close.svg" alt="Close" width={24} height={24} />
+          </button>
+        </div>
+
+        <nav className="mt-6 space-y-2 text-sm">
+          {navLinks.map(({ href, label, icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`flex flex-row gap-4 items-center px-6 py-3 text-lg ${
+                pathname === href ? active : "hover:bg-gray-100"
+              }`}
+              onClick={onClose}
+            >
+              <span>
+                <img src={icon} alt={label} height="24" width="24" />
+              </span>
+              <p>{label}</p>
+            </Link>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 tablet:hidden"
+          onClick={onClose}
+        />
+      )}
+    </>
   );
 }
 
-function MenuBar() {
+export function MenuBar() {
   return (
     <div className="bg-white w-full h-fit flex justify-end px-3 py-2.5">
       <p className="cursor-pointer hover:scale-115 transition-all duration-300 ease-in-out">
@@ -180,33 +295,7 @@ function Main() {
         />
 
         {/* Chart Area*/}
-        {/* <div className="bg-white p-6 rounded shadow-md">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Gender & Age Distribution</h2>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <button>{"<"}</button>
-              <span>2024年 01月</span>
-              <button>{">"}</button>
-            </div>
-          </div>
-          <div className="h-64 flex items-center justify-center text-gray-400">
-            [Bar Chart Placeholder: gender-age stack bars per month]
-          </div>
-          <div className="mt-4 flex space-x-4 text-sm">
-            <span className="text-orange-500">■ Male</span>
-            <span className="text-orange-300">■ Female</span>
-            <span className="text-yellow-300">■ Other</span>
-            <span className="text-gray-400">■ No Answer</span>
-          </div>
-        </div> */}
-
-        <GenderAgeChart
-          data={data}
-          year={2024}
-          month="05"
-          onNext={() => console.log("next")}
-          onPrev={() => console.log("prev")}
-        />
+        <GenderAgeChart data={data} />
 
         <Card
           title="Usage Count"
@@ -227,17 +316,17 @@ function Main() {
   );
 }
 
-export default function Dashboard() {
+export default function Dashboard({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const pathname = usePathname();
+
   return (
-    <div className="flex flex-rows gap-[1.5px]">
-      <NavBar />
-      <div className="flex flex-col w-full">
-        <MenuBar />
-        <Main />
-      </div>
-      {/* <Dashboard /> */}
-    </div>
+    <>
+      {pathname === "/dashboard" && <Main />}
+      {children}
+    </>
   );
 }
-
-// #ff770091

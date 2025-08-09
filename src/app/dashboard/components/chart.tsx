@@ -6,8 +6,10 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  CartesianGrid,
 } from "recharts";
 import { CustomTooltip } from "./tooltip";
+import { useState } from "react";
 
 const ageGroups = [
   "<10",
@@ -39,19 +41,30 @@ type UserData = {
 
 interface Props {
   data: UserData[];
-  month: string;
-  year: number;
-  onPrev: () => void;
-  onNext: () => void;
 }
 
-export default function GenderAgeChart({
-  data,
-  month,
-  year,
-  onPrev,
-  onNext,
-}: Props) {
+export default function GenderAgeChart({ data }: Props) {
+  const [count, setcount] = useState<number>(0);
+
+  const current: Date = new Date();
+
+  const year = current.getFullYear();
+  const month = current.getMonth();
+
+  const newMonth = month + count;
+  const displayYear = year + Math.floor(newMonth / 12);
+  const displayMonth = (((newMonth % 12) + 12) % 12) + 1; // 1–12 format
+
+  console.log(displayMonth);
+
+  function handlePrevious() {
+    setcount((count) => count - 1);
+  }
+
+  function handleNext() {
+    setcount((count) => count + 1);
+  }
+
   return (
     <div className="bg-white p-6 rounded shadow-md col-span-2">
       <div className="flex justify-between items-center mb-4">
@@ -59,21 +72,22 @@ export default function GenderAgeChart({
           Gender & Age Distribution
         </h2>
         <div className="flex items-center space-x-2">
-          <span>{year}</span>
-          <button onClick={onPrev} className="text-lg">
+          <span>{displayYear}</span>
+          <button onClick={handlePrevious} className="text-xl">
             &#8592;
           </button>
-          <span>{month}</span>
-          <button onClick={onNext} className="text-lg">
+          <span>{displayMonth}</span>
+          <button onClick={handleNext} className="text-xl">
             &#8594;
           </button>
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={400}>
         <BarChart data={data} barSize={25} barGap={10}>
+          <CartesianGrid strokeDasharray="0 0" vertical={false} />
           <XAxis dataKey="ageGroup" />
-          <YAxis />
+          <YAxis domain={[0, 1000]} tickCount={10} interval={0} />
           <Tooltip content={<CustomTooltip />} />
           <Legend />
           <Bar
