@@ -55,7 +55,7 @@ export default function Contents() {
 
       setTimeout(() => {
         router.push("/login");
-      });
+      }, 6000);
     } else {
       // show error message for a couple of seconds then don't redirect to login page
       toast.error("Please fix the errors before submitting.", {
