@@ -316,7 +316,7 @@ function Main() {
   );
 }
 
-export default function Dashboard({
+export function Dashboard({
   children,
 }: Readonly<{
   children: React.ReactNode;
