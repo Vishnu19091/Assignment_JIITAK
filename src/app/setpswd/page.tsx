@@ -1,7 +1,10 @@
+import Content from "./components/content";
+import Form from "./components/form";
+
 export default function SetPassword() {
   return (
-    <div>
-      <h1>Set Password</h1>
-    </div>
+    <>
+      <Content />
+    </>
   );
 }

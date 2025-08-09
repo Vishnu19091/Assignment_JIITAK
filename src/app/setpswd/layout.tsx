@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Logo from "./components/logo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,12 +23,11 @@ export default function SetPasswordLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <main className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <div className="flex flex-col gap-0.5 min-h-screen">
+        <Logo />
         {children}
-      </body>
-    </html>
+      </div>
+    </main>
   );
 }

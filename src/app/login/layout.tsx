@@ -22,12 +22,8 @@ export default function LoginLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <main className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <div className="flex flex-col gap-0.5 min-h-screen">{children}</div>
+    </main>
   );
 }

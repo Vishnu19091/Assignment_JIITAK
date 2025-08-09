@@ -1,159 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Card } from "./components/card";
-import GenderAgeChart from "./components/chart";
 import Link from "next/link";
-import { useState } from "react";
-
-const data = [
-  {
-    ageGroup: "< 10",
-    male: 80,
-    female: 100,
-    other: 20,
-    noAnswer: 30,
-  },
-  {
-    ageGroup: "10 >",
-    male: 100,
-    female: 120,
-    other: 30,
-    noAnswer: 40,
-  },
-  {
-    ageGroup: "20 >",
-    male: 180,
-    female: 200,
-    other: 50,
-    noAnswer: 60,
-  },
-  {
-    ageGroup: "30 >",
-    male: 200,
-    female: 220,
-    other: 60,
-    noAnswer: 70,
-  },
-
-  {
-    ageGroup: "40 >",
-    male: 300,
-    female: 420,
-    other: 20,
-    noAnswer: 40,
-  },
-  {
-    ageGroup: "50 >",
-    male: 100,
-    female: 220,
-    other: 30,
-    noAnswer: 50,
-  },
-  {
-    ageGroup: "60 >",
-    male: 150,
-    female: 120,
-    other: 50,
-    noAnswer: 60,
-  },
-  {
-    ageGroup: "70 >",
-    male: 150,
-    female: 120,
-    other: 50,
-    noAnswer: 60,
-  },
-  {
-    ageGroup: "80 >",
-    male: 150,
-    female: 120,
-    other: 50,
-    noAnswer: 60,
-  },
-  {
-    ageGroup: "90 >",
-    male: 150,
-    female: 120,
-    other: 50,
-    noAnswer: 60,
-  },
-];
-
-// empty data
-const data_v1 = [
-  {
-    ageGroup: "< 10",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "10 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "20 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "30 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-
-  {
-    ageGroup: "40 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "50 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "60 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "70 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "80 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-  {
-    ageGroup: "90 >",
-    male: 0,
-    female: 0,
-    other: 0,
-    noAnswer: 0,
-  },
-];
+import { Main } from "./components/main";
 
 interface NavBarProps {
   isOpen: boolean;
@@ -162,7 +11,8 @@ interface NavBarProps {
 
 export function NavBar({ isOpen, onClose }: NavBarProps) {
   const pathname = usePathname();
-  const active = "bg-orange-100 text-orange-600 border-r-4 font-bold";
+  const active =
+    "bg-orange-100 text-orange-600 border-r-4 border-orange-500 font-bold";
 
   const navLinks = [
     { href: "/dashboard", label: "Dashboard", icon: "./assets/dashboard.svg" },
@@ -180,7 +30,9 @@ export function NavBar({ isOpen, onClose }: NavBarProps) {
       {/* Sidebar / Drawer */}
       <aside
         className={`fixed tablet:static top-0 left-0 min-h-screen w-[18rem] bg-white shadow-md z-50 transform transition-transform duration-300
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} tablet:translate-x-0`}
+        ${
+          isOpen ? "translate-x-0 w-full" : "-translate-x-full"
+        } tablet:translate-x-0`}
       >
         <div className="p-6 border-b border-gray-100 flex items-center justify-between">
           <h1 className="text-xl font-bold text-orange-500">LookMeal</h1>
@@ -209,12 +61,7 @@ export function NavBar({ isOpen, onClose }: NavBarProps) {
       </aside>
 
       {/* Mobile overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-30 tablet:hidden"
-          onClick={onClose}
-        />
-      )}
+      {isOpen && <div className="fixed tablet:hidden" onClick={onClose} />}
     </>
   );
 }
@@ -258,65 +105,11 @@ export function MenuBar() {
   );
 }
 
-// Main
-function Main() {
-  return (
-    <main className="grid grid-rows-3 w-[95%] mx-auto p-8 space-y-8">
-      {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-6">
-        <Card
-          title="Total Registered Users"
-          date="2024/2/1 - 2024/2/5"
-          value="450"
-          note="400 last month"
-          diff="↑ 12.5%"
-        />
-        <Card
-          title="Active Users"
-          date="2024/2/1 - 2024/2/5"
-          value="50/month"
-          note="12 last month"
-          diff="↑ 316.6%"
-        />
-        <Card
-          title="Retention Rate"
-          date="2024/2/1 - 2024/2/5"
-          value="10%"
-          note="12% last month"
-          diff="↓ 16.6%"
-          red
-        />
-        <Card
-          title="Avg. Search Count"
-          date="2024/2/1 - 2024/2/5"
-          value="4/month"
-          note="2 last month"
-          diff="↑ 100%"
-        />
-
-        {/* Chart Area*/}
-        <GenderAgeChart data={data} />
-
-        <Card
-          title="Usage Count"
-          date="2024/2/1 - 2024/2/5"
-          value="125/month"
-          note="85 last month"
-          diff="↑ 47%"
-        />
-        <Card
-          title="Account Deletions"
-          date="2024/2/1 - 2024/2/5"
-          value="10/month"
-          note="8 last month"
-          diff="↑ 25%"
-        />
-      </div>
-    </main>
-  );
-}
-
-export function Dashboard({
+/**
+ * @returns Dashboard if pathname matches the current path
+ * and with Main Component is returned
+ */
+export default function Dashboard({
   children,
 }: Readonly<{
   children: React.ReactNode;

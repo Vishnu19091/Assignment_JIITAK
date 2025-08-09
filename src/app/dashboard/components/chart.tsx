@@ -83,13 +83,30 @@ export default function GenderAgeChart({ data }: Props) {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={400}>
-        <BarChart data={data} barSize={25} barGap={10}>
+      <ResponsiveContainer
+        width="100%"
+        height={window.innerWidth < 640 ? 250 : 400} // smaller height on mobile
+      >
+        <BarChart
+          data={data}
+          barSize={window.innerWidth < 640 ? 15 : 25} // thinner bars on mobile
+          barGap={window.innerWidth < 640 ? 5 : 10}
+        >
           <CartesianGrid strokeDasharray="0 0" vertical={false} />
-          <XAxis dataKey="ageGroup" />
-          <YAxis domain={[0, 1000]} tickCount={10} interval={0} />
+          <XAxis
+            dataKey="ageGroup"
+            tick={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
+          />
+          <YAxis
+            domain={[0, 1000]}
+            tickCount={10}
+            interval={0}
+            tick={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
+          />
           <Tooltip content={<CustomTooltip />} />
-          <Legend />
+          <Legend
+            wrapperStyle={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
+          />
           <Bar
             dataKey="female"
             stackId="a"

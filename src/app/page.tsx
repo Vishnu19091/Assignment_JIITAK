@@ -20,7 +20,7 @@ export default function Home() {
             href={"/setpswd"}
             className="hover:underline underline-offset-8"
           >
-            Set Password
+            Reset Password
           </Link>
         </div>
       </div>

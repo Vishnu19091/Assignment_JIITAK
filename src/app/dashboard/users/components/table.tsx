@@ -82,6 +82,12 @@ export function Table({
           </tr>
         </thead>
 
+        {/* Table Data */}
+        {currentItems.length === 0 && (
+          <p className="text-center absolute mobile:top-[50%] mobile:left-[50%] mobile:-translate-x-[50%] tablet:top-[50%] tablet:left-[50%]">
+            No Data found
+          </p>
+        )}
         <tbody>
           {currentItems.map((val, idx) => (
             <tr
