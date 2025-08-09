@@ -3,6 +3,13 @@
 import React, { useState } from "react";
 import { Input } from "./input";
 import { useRouter } from "next/navigation";
+import FormErrorMessage from "./errormessage";
+
+// Regular expression for email validation
+export const validateEmail = (email: string) => {
+  const regex = /^[a-z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return regex.test(email);
+};
 
 /**
  * @returns Validation form for email
@@ -11,12 +18,6 @@ export default function EmailValidationForm() {
   const [email, setEmail] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
 
-  // Regular expression for email validation
-  const validateEmail = (email: string) => {
-    const regex = /^[a-z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return regex.test(email);
-  };
-
   const router = useRouter();
 
   // Validate Email
@@ -24,8 +25,12 @@ export default function EmailValidationForm() {
     const value = e.target.value;
 
     setEmail(value);
-    if (value.length >= 6) {
+    if (value === "") {
+      setIsValid(true);
+    } else if (value.length >= 8) {
       setIsValid(validateEmail(value) || value === "");
+    } else {
+      setIsValid(false);
     }
   };
 
@@ -40,7 +45,6 @@ export default function EmailValidationForm() {
       <form className="flex flex-col w-full" onSubmit={(e) => handleSubmit(e)}>
         <label className="font-semibold text-lg">Email address</label>
 
-        {/* Reusable component */}
         <Input
           valid={isValid}
           OnHandleChange={handleChange}
@@ -48,11 +52,7 @@ export default function EmailValidationForm() {
         />
 
         {/* Show Error Message */}
-        {!isValid && (
-          <p className="text-red-500 font-semibold text-md mb-5">
-            Enter a valid email!
-          </p>
-        )}
+        <FormErrorMessage state={isValid} />
 
         {/* Allow to click if email is valid; else don't */}
         <button

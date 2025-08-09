@@ -11,6 +11,7 @@ interface Props {
 }
 
 /**
+ * not reusable
  * This component handles multiple password input field
  * @returns
  */
@@ -25,8 +26,13 @@ export default function PasswordInputFields({
 }: Props) {
   return (
     <form className="w-full flex flex-col gap-4" onSubmit={HandleSubmit}>
-      <PasswordInput pswd={password} onSetPassword={onSetPassword} />
       <PasswordInput
+        label="New Password"
+        pswd={password}
+        onSetPassword={onSetPassword}
+      />
+      <PasswordInput
+        label="Confirm New Password"
         pswd={confirmPassword}
         onSetPassword={onSetConfirmPassword}
       />

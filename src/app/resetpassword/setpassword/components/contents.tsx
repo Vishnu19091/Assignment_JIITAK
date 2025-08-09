@@ -51,11 +51,11 @@ export default function Contents() {
         draggable: true,
         transition: Slide,
       });
-      console.log("");
 
+      // redirects after 5 seconds
       setTimeout(() => {
         router.push("/login");
-      }, 6000);
+      }, 4500);
     } else {
       // show error message for a couple of seconds then don't redirect to login page
       toast.error("Please fix the errors before submitting.", {
@@ -66,12 +66,11 @@ export default function Contents() {
         draggable: true,
         transition: Slide,
       });
-      console.log("");
     }
   };
 
   return (
-    <div className="w-[30%] mx-auto my-auto flex flex-col gap-5 items-center">
+    <div className="mobile:w-full mobile:px-2 mobile:py-4 tablet:p-0 tablet:w-[30%] tablet:mx-auto tablet:my-auto flex flex-col gap-5 items-center">
       <h1 className="font-bold text-xl text-center">Password Reset</h1>
       <p className="font-normal text-center text-gray-800">
         To confirm new password

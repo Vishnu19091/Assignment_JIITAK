@@ -2,21 +2,27 @@ interface InputProp {
   OnHandleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   input_value?: string;
   valid?: boolean;
+  className?: string;
 }
 
 /**
- *
- * @param email
+ * ReUsable component
+ * @param ' email_input, state(valid<state-variable>,
+ * handlefunction, className(for Tailwindcss)),
  * @returns input field for email validation
  */
-export function Input({ input_value, valid, OnHandleChange }: InputProp) {
+export function Input({
+  input_value,
+  valid,
+  OnHandleChange,
+  className,
+}: InputProp) {
   return (
     <input
       type="text"
       value={input_value}
       onChange={OnHandleChange}
-      className={`border border-gray-400 bg-white focus:outline-none
-            
+      className={`border border-gray-400 bg-white focus:outline-none ${className}
             ${
               !valid
                 ? "focus:border-red-400 caret-red-600"
