@@ -5,6 +5,7 @@ import {
   Close,
   Dashboard,
   LOGO,
+  NavHome,
   Users,
   Winners,
 } from "@/components/svgs";
@@ -19,6 +20,7 @@ export function NavBar({ isOpen, onClose }: NavBarProps) {
   const active =
     "bg-orange-100 text-orange-600 border-r-4 border-orange-500 font-bold";
 
+  // Navigation Links
   const navLinks = [
     {
       href: "/dashboard",
@@ -39,6 +41,11 @@ export function NavBar({ isOpen, onClose }: NavBarProps) {
       href: "/dashboard/admin",
       label: "Admin",
       icon: <Admin className="h-6 w-6" />,
+    },
+    {
+      href: "/",
+      label: "Navigation",
+      icon: <NavHome className="h-6 w-6" />,
     },
   ];
 

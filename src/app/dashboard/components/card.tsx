@@ -9,6 +9,16 @@ interface CardProp {
   red?: boolean;
 }
 
+/**
+ * @param ' title,
+  date,
+  value,
+  unit,
+  label,
+  note,
+  diff,
+ * @returns **Reusable Card**
+ */
 export function Card({
   title,
   date,
@@ -33,7 +43,7 @@ export function Card({
           <span>{value}</span>
           {unit && (
             <span className="text-lg ml-1 font-normal text-gray-700">
-              {unit}
+              {unit}/
             </span>
           )}
           {label && <span className="text-sm ml-2 text-gray-500">{label}</span>}

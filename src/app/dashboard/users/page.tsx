@@ -2,7 +2,7 @@
 
 import { data } from "./components/data";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataProp, Table } from "./components/table";
 import {
   Pagination,
@@ -22,8 +22,8 @@ export default function Users() {
     key: keyof DataProp;
     direction: "ascending" | "descending";
   }>({
-    key: "nickname",
-    direction: "ascending",
+    key: "registrationDate",
+    direction: "descending",
   });
 
   const handleSort = (key: keyof DataProp) => {
@@ -40,10 +40,12 @@ export default function Users() {
 
   const [searchEmail, setSearchEmail] = useState<string>("");
 
+  // filter data when querying
   const filteredData = data.filter((item) =>
     item.email.toLowerCase().includes(searchEmail.toLowerCase())
   );
 
+  // Sort the filtered data whether ascending or descending order
   const sortedData = [...filteredData].sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
       return sortConfig.direction === "ascending" ? -1 : 1;
@@ -54,7 +56,20 @@ export default function Users() {
     return 0;
   });
 
+  // Store the sorted data
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+
+      await new Promise((res) => setTimeout(res, 1000));
+      setLoading(false);
+    };
+    fetchData();
+  }, [searchEmail]);
 
   return (
     <div className="min-h-screen px-10 py-6 flex flex-col gap-8">
@@ -64,11 +79,13 @@ export default function Users() {
       />
 
       <div className="overflow-x-auto rounded-xl shadow-md">
+        {/* Loading State added */}
         <Table
           currentItems={currentItems}
           startIndex={indexOfFirstItem}
           onSort={handleSort}
           sortConfig={sortConfig}
+          loading={loading}
         />
       </div>
 

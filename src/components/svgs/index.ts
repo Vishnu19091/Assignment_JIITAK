@@ -15,3 +15,7 @@ export { default as Users } from "./users.svg";
 export { default as LOGO } from "./logo.svg";
 
 export { default as SplashLogo } from "./splashLogo.svg";
+
+export { default as Loader } from "./load.svg";
+
+export { default as NavHome } from "./compass.svg";
