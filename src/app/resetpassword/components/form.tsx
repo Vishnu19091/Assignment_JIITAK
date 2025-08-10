@@ -12,7 +12,7 @@ export const validateEmail = (email: string) => {
 };
 
 /**
- * @returns Validation form for email
+ * @returns **Validation form for email**
  */
 export default function EmailValidationForm() {
   const [email, setEmail] = useState<string>("");

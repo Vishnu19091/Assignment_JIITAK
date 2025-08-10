@@ -1,5 +1,5 @@
 /**
- * ReUsable Component
+ * **Reusable Component**
  * @param state:boolen
  * @returns Error message component
  */

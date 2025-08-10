@@ -4,31 +4,32 @@ import Logo from "./resetpassword/components/logo";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-0.5 min-h-screen">
+    <div className="flex flex-col min-h-screen items-center justify-center px-4 py-8">
+      {/* LOGO Card */}
       <Logo />
-      <div className="font-sans w-fit mx-auto my-[15rem] p-8 sm:p-20">
-        <div className="border border-black rounded-2xl py-2 px-4 text-3xl translate-y-[50%]">
-          <p className="border-b-2 w-full mb-4">Navigation</p>
-          <div className="flex flex-col gap-4">
-            <Link
-              href={"/dashboard"}
-              className="hover:underline underline-offset-8"
-            >
-              Dashboard
-            </Link>
-            <Link
-              href={"/login"}
-              className="hover:underline underline-offset-8"
-            >
-              Login
-            </Link>
-            <Link
-              href={"/resetpassword"}
-              className="hover:underline underline-offset-8"
-            >
-              Reset Password
-            </Link>
-          </div>
+
+      {/* Navigation */}
+
+      {/* Navigation Card */}
+      <div className="font-sans w-full max-w-sm border border-black rounded-2xl p-6 sm:p-8">
+        <p className="border-b-2 border-black mb-4 pb-2 text-3xl">Navigation</p>
+
+        <div className="flex flex-col gap-4">
+          <Link
+            href="/dashboard"
+            className="hover:underline underline-offset-8"
+          >
+            Dashboard
+          </Link>
+          <Link href="/login" className="hover:underline underline-offset-8">
+            Login
+          </Link>
+          <Link
+            href="/resetpassword"
+            className="hover:underline underline-offset-8"
+          >
+            Reset Password
+          </Link>
         </div>
       </div>
     </div>

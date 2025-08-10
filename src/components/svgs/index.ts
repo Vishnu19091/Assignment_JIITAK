@@ -13,3 +13,5 @@ export { default as Menu } from "./menu.svg";
 export { default as Users } from "./users.svg";
 
 export { default as LOGO } from "./logo.svg";
+
+export { default as SplashLogo } from "./splashLogo.svg";

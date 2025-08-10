@@ -6,7 +6,7 @@ interface InputProp {
 }
 
 /**
- * ReUsable component
+ * **Reusable Component**
  * @param ' email_input, state(valid<state-variable>,
  * handlefunction, className(for Tailwindcss)),
  * @returns input field for email validation

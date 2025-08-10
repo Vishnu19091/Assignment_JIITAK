@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { Slide, ToastContainer, toast } from "react-toastify";
 
 /**
+ * **Not-Reusable component**
  * Set Password Content
  * contains title, message, form, reset password button
  */
@@ -70,7 +71,11 @@ export default function Contents() {
   };
 
   return (
-    <div className="mobile:w-full mobile:px-2 mobile:py-4 tablet:p-0 tablet:w-[30%] tablet:mx-auto tablet:my-auto flex flex-col gap-5 items-center">
+    <div
+      className="mobile:w-full mobile:px-2 mobile:py-4
+    tablet:p-0 tablet:w-[30%] tablet:mx-auto tablet:my-auto
+    flex flex-col gap-5 items-center"
+    >
       <h1 className="font-bold text-xl text-center">Password Reset</h1>
       <p className="font-normal text-center text-gray-800">
         To confirm new password

@@ -11,7 +11,7 @@ interface Props {
 }
 
 /**
- * not reusable
+ * **Reusable component**
  * This component handles multiple password input field
  * @returns
  */

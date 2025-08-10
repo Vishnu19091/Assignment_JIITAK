@@ -9,7 +9,7 @@ interface inputProp {
 }
 
 /**
- * A reusable Component
+ * **Reusable Component**
  * @param ' label,password, statevariable
  * @returns Password input field
  */
@@ -36,10 +36,12 @@ export function PasswordInput({ label, pswd, onSetPassword }: inputProp) {
 
   return (
     <div className="flex flex-col w-full relative">
+      {/* Label */}
       <label htmlFor="password" className="mb-2 font-medium text-gray-700">
         {label}
       </label>
 
+      {/* Password field */}
       <input
         type={showPassword ? "text" : "password"}
         id="password"
@@ -52,7 +54,14 @@ export function PasswordInput({ label, pswd, onSetPassword }: inputProp) {
         } focus:outline-none transition-colors duration-200`}
       />
 
-      {/* Reserve space with min-h-[...] and toggle visibility */}
+      {/* 
+      Show Error Message if password is not strong and didn't
+      
+      meet the condition
+
+      Reserve space with min-h-[...] and toggle visibility 
+      
+      */}
       <p
         className={`font-semibold text-sm mt-2 min-h-[1.25rem] ${
           !isValid ? "text-red-500" : "invisible"
@@ -62,8 +71,11 @@ export function PasswordInput({ label, pswd, onSetPassword }: inputProp) {
         uppercase and lowercase letters and numbers
       </p>
 
+      {/* Show/Hide Toggle Button */}
       <button
-        className="absolute right-4 top-[45%] -translate-y-1/2 text-orange-500 font-semibold hover:text-orange-700 transition-colors duration-200 cursor-pointer"
+        className="absolute right-4 mobile:top-[39%] lmobile:top-[44%] tablet:top-[34%] 
+        desktop:top-[39%] lscreen:top-[45%] -translate-y-1/2 text-orange-500 font-semibold
+         hover:text-orange-700 transition-colors duration-200 cursor-pointer"
         type="button"
         onClick={togglePasswordVisibility}
       >

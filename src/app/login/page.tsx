@@ -25,7 +25,7 @@ forgot password link-> this redirects to the '/resetpassword' page
 }
 
 /**
- * @returns login form
+ * @returns **Login Form**
  */
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -41,7 +41,7 @@ export default function Login() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (isAccoutBlocked) {
-      // show error message for a couple of seconds then don't redirect to login page
+      // show account blocked message for a couple of seconds then don't redirect to dashboard page
       toast.error("Account Blocked can't login now!", {
         position: "bottom-center",
         autoClose: 3000,
@@ -51,7 +51,7 @@ export default function Login() {
         transition: Slide,
       });
     } else if (email.length > 8 && password.length > 8) {
-      // show success message for a couple of seconds then redirect to login page
+      // show success message for a couple of seconds then redirect to dashboard page
       toast.success("Form submitted successfully! You'll be redirected", {
         position: "bottom-center",
         autoClose: 3000,
@@ -65,7 +65,7 @@ export default function Login() {
         router.push("/dashboard");
       }, 4500);
     } else {
-      // show error message for a couple of seconds then don't redirect to login page
+      // show error message for a couple of seconds then don't redirect to dashboard page
       toast.error("Please fix the errors before submitting.", {
         position: "bottom-center",
         autoClose: 3000,

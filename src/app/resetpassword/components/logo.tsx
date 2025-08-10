@@ -1,7 +1,7 @@
 import { LOGO } from "@/components/svgs";
 
 /**
- * ReUsable Component
+ * **Reusable Component**
  * @returns Logo
  */
 export default function Logo() {

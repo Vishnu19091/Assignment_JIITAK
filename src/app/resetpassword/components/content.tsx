@@ -2,12 +2,17 @@ import Link from "next/link";
 import Form from "./form";
 
 /**
- * Reset Password Content
+ * **Reset Password Content**
  * contains title, message, form, redirect to login button
  */
 export default function ResetContent() {
   return (
-    <div className="w-[30%] mx-auto my-auto flex flex-col gap-5 items-center">
+    <div
+      className="w-full px-4 py-1
+  tablet:w-[30%] mx-auto
+  mobile:my-[30px] tablet:my-auto
+  flex flex-col gap-5 items-center"
+    >
       <h1 className="font-bold text-xl text-center">
         Please enter your current email address. We will send you a URL for
         resetting your password via email
