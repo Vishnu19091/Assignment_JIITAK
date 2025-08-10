@@ -22,13 +22,13 @@ export const data = [
     male: 180,
     female: 200,
     other: 50,
-    noAnswer: 60,
+    noAnswer: 160,
   },
   {
     ageGroup: "30 >",
     male: 200,
     female: 220,
-    other: 60,
+    other: 160,
     noAnswer: 70,
   },
 
@@ -36,7 +36,7 @@ export const data = [
     ageGroup: "40 >",
     male: 300,
     female: 420,
-    other: 20,
+    other: 120,
     noAnswer: 40,
   },
   {
@@ -50,7 +50,7 @@ export const data = [
     ageGroup: "60 >",
     male: 150,
     female: 120,
-    other: 50,
+    other: 40,
     noAnswer: 60,
   },
   {
@@ -64,14 +64,14 @@ export const data = [
     ageGroup: "80 >",
     male: 150,
     female: 120,
-    other: 50,
-    noAnswer: 60,
+    other: 10,
+    noAnswer: 100,
   },
   {
     ageGroup: "90 >",
     male: 150,
     female: 120,
-    other: 50,
+    other: 90,
     noAnswer: 60,
   },
 ];

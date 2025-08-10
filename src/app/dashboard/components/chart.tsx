@@ -25,10 +25,10 @@ const ageGroups = [
 ];
 
 const colors = {
-  female: "#ff8904", // Orange-300
-  male: "#ff770091", // Orange-500
-  other: "#fde68a", // Yellow-300
-  noAnswer: "#f5490050", // Gray-300
+  female: "#ff9a00",
+  male: "#ffb647",
+  noAnswer: "#ffd799",
+  other: "#ffebcc",
 };
 
 type UserData = {
@@ -88,14 +88,18 @@ export default function GenderAgeChart({ data }: Props) {
         height={window.innerWidth < 640 ? 250 : 400} // smaller height on mobile
       >
         <BarChart
+          className="text-black font-black"
           data={data}
-          barSize={window.innerWidth < 640 ? 15 : 25} // thinner bars on mobile
+          barSize={window.innerWidth < 640 ? 25 : 35} // thinner bars on mobile
           barGap={window.innerWidth < 640 ? 5 : 10}
         >
           <CartesianGrid strokeDasharray="0 0" vertical={false} />
           <XAxis
             dataKey="ageGroup"
-            tick={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
+            tick={{
+              fontSize: window.innerWidth < 640 ? 10 : 12,
+              color: "black",
+            }}
           />
           <YAxis
             domain={[0, 1000]}
@@ -104,9 +108,19 @@ export default function GenderAgeChart({ data }: Props) {
             tick={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
           />
           <Tooltip content={<CustomTooltip />} />
+
+          {/* Legend */}
           <Legend
-            wrapperStyle={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
+            wrapperStyle={{
+              fontSize: window.innerWidth < 640 ? 10 : 12,
+              fill: "#000",
+              color: "#000",
+            }}
+            formatter={(value) => (
+              <span style={{ color: "#000" }}>{value}</span>
+            )}
           />
+
           <Bar
             dataKey="female"
             stackId="a"
@@ -114,13 +128,13 @@ export default function GenderAgeChart({ data }: Props) {
             name="Female"
           />
           <Bar dataKey="male" stackId="a" fill={colors.male} name="Male" />
-          <Bar dataKey="other" stackId="a" fill={colors.other} name="Other" />
           <Bar
             dataKey="noAnswer"
             stackId="a"
             fill={colors.noAnswer}
             name="No Answer"
           />
+          <Bar dataKey="other" stackId="a" fill={colors.other} name="Other" />
         </BarChart>
       </ResponsiveContainer>
     </div>
